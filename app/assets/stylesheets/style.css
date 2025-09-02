@@ -1,0 +1,94 @@
+/* === Conteneur global de la page === */
+body {
+  background: url("feu.jpg") no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Arial', sans-serif;
+  color: white;
+  text-align: center;  /* Centre les textes */
+  display: flex;
+  flex-direction: column; /* Empile tout en colonne */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  transition: background-color 0.5s ease; /* Changement de couleur plus fluide */
+}
+
+/* === Titres et paragraphes === */
+h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 5px black;
+}
+
+p {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  text-shadow: 1px 1px 3px black;
+}
+
+/* === Zone des touches === */
+.keys {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;  /* Permet de passer à la ligne si écran petit */
+  justify-content: center;
+}
+
+/* === Style des touches === */
+.key {
+  position: relative;       /* Nécessaire pour centrer le ripple */
+  overflow: hidden;         /* Évite que le ripple déborde */
+  border: 3px solid #333;
+  border-radius: 12px;
+  padding: 20px;
+  font-size: 2rem;
+  text-align: center;
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  text-shadow: 0 0 5px black;
+  box-shadow: 0 0 5px #ff00ff, 0 0 10px #ff007f; /* Effet néon permanent */
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.3s ease;
+}
+
+/* === Animation quand une touche est active === */
+.key.playing {
+  transform: scale(1.2) rotate(-3deg);
+  border-color: #ff007f;
+  box-shadow: 0 0 25px #ff007f, 0 0 50px #ff00ff;
+  background: rgba(255, 0, 127, 0.3);
+}
+
+.key.playing::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 0, 0.6);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  animation: ripple 0.5s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(6);
+    opacity: 0;
+  }
+}
+
+/* === Style des lettres === */
+kbd {
+  display: block;
+  font-size: 1.5rem;
+}
